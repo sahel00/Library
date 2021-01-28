@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Biblioteca.Models.Studenti>
+@using Biblioteca.Models;
+
+@{
+    ViewBag.Title = "AllStudenti";
+}
+
+<h2>Lista Studenti</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Email</th>
+            <th>Classe</th>
+            <th>Operazioni</th>
+        </tr>
+
+    </thead>
+    @foreach (Studenti s in @Model)
+    {
+        <tbody>
+            <td>@s.Nome</td>
+            <td>@s.Cognome</td>
+            <td>@s.Email</td>
+            <td>@s.Classe</td>
+            <td>@Html.ActionLink("Modifica", "UpdateStudenti", "Amminitsratore", new { s.Email }, null)</td>
+            <td>@using (Html.BeginForm("DeleteStudenti", "Amminitsratore", new { s.Email })) 
+                {
+                    <input type="submit" value="Elimina" class="btn btn-default" />
+                }
+            </td >
+        </tbody>
+    }
+</table>
+

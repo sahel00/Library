@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<h3>Lista Libri in Prestito</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codice Libro</th>
+                <th>Matricola Studente</th>
+                <th>Titolo Libro</th>
+            </tr>
+
+        </thead>
+        @foreach (var lpp in ViewBag.ListaPrestiti)
+        {
+            <tbody>
+            <td>@lpp.CodiceLibro</td>
+            <td>@lpp.MatricolaStudente</td>
+            <td>@lpp.Titolo</td>
+            </tbody>
+        }
+    </table>
+
+<h3>Lista Studenti aventi un Prestito</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Studente</th>
+                <th>Cognome Studente</th>
+                <th>Titolo Libro</th>
+            </tr>
+
+        </thead>
+        @foreach (var lsp in ViewBag.ListaPrestiti)
+        {
+            <tbody>
+            <td>@lsp.Nome</td>
+            <td>@lsp.Cognome</td>
+            <td>@lsp.Titolo</td>
+            </tbody>
+        }
+    </table>
+
+<h3>Storico Prestiti</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome Studente</th>
+            <th>Cognome Studente</th>
+            <th>Id Prestito</th>
+            <th>Titolo Libro</th>
+        </tr>
+
+    </thead>
+    @foreach (var sp in ViewBag.StoricoPrestiti)
+    {
+        <tbody>
+            <td>@sp.Nome</td>
+            <td>@sp.Cognome</td>
+            <td>@sp.Id</td>
+            <td>@sp.Titolo</td>
+        </tbody>
+    }
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome Studente</th>
+            <th>Cognome Studente</th>
+            <th>Id Prestito</th>
+            <th>Titolo Libro</th>
+        </tr>
+
+    </thead>
+    @foreach (var scaduti in ViewBag.PrestitiScaduti)
+    {
+        <tbody>
+        <td>@scaduti.Matricola</td>
+        <td>@scaduti.Nome</td>
+        <td>@scaduti.CodiceLibro</td>
+        </tbody>
+    }
+</table>

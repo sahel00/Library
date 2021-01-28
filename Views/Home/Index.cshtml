@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h1>APPLICAZIONE GESTISCE UNA BIBLIOTECA</h1>
+
+<div class="row">
+    <p>
+        @if (User.Identity.IsAuthenticated) 
+        {
+            <h1>Welcome @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</h1>
+        }
+    </p> 
+</div>
+
+

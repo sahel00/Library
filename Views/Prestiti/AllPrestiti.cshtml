@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Biblioteca.Models.Prestiti>
+@using Biblioteca.Models;
+
+@{
+    ViewBag.Title = "AllPrestiti";
+}
+
+<h2>Tutti Prestiti</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Codice Libro</th>
+            <th>Matricola Studenti</th>
+            <th>Data Inizio Prestito</th>
+            <th>Data Fine Prestito</th>
+            <th>Riportato</th>
+        </tr>
+
+    </thead>
+    @foreach (Prestiti p in @Model)
+    {
+        <tbody>
+        <td>@p.Id</td>
+        <td>@p.CodiceLibro</td>
+        <td>@p.MatricolaStudente</td>
+        <td>@p.Data_Inizio_Prestito</td>
+        <td>@p.Data_Fine_Prestito</td>
+        <td>@p.Riportato</td>
+        <td>@Html.ActionLink("Modifica", "UpdatePrestito", "Prestiti", new { p.Id }, null)</td>
+        <td>
+            @using (Html.BeginForm("deletePrestiti", "Prestiti", new { p.Id }))
+            {
+                <input type="submit" value="Elimina Prestito" class="btn btn-default" />
+            }
+        </td>
+        @if (p.Riportato == false)
+        {
+            <td>
+                @using (Html.BeginForm("riportaLibro", "Prestiti", new { p.Id }))
+                {
+                    <input type="submit" value="Riporta Libro" class="btn btn-default" />
+                }
+            </td>
+        }
+
+        </tbody>
+    }
+</table>
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Biblioteca.Models.Libri>
+@using Biblioteca.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tutti Libri</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codice</th>
+            <th>Titolo</th>
+            <th>Autore</th>
+            <th>Editore</th>
+            <th>Anno</th>
+            <th>Classificazione</th>
+        </tr>
+
+    </thead>
+    @foreach (Libri l in @Model)
+    {
+        <tbody>
+        <td>@l.Codice</td>
+        <td>@l.Titolo</td>
+        <td>@l.Autore</td>
+        <td>@l.Editore</td>
+        <td>@l.Anno</td>
+        <td>@l.Classificazione</td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if(User.IsInRole("ADMIN"))
+            {
+                <td>@Html.ActionLink("Modifica", "UpdateLibro", "Amminitsratore", new { l.Codice }, null)</td>
+                <td>
+                    @using (Html.BeginForm("DeleteLibro", "Amminitsratore", new { l.Codice }))
+                    {
+                        <input type="submit" value="Elimina" class="btn btn-default" />
+                    }
+                </td>
+            }
+
+        }
+
+        </tbody>
+    }
+</table>
+
